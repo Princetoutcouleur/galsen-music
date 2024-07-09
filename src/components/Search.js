@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+import '../Search.css'
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -14,8 +15,8 @@ function Search() {
   };
 
   return (
-    <div className="container mb-4">
-      <form className="d-flex">
+    <div className="search-container">
+      <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
           value={query}
@@ -23,9 +24,7 @@ function Search() {
           placeholder="Search for a track..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleSearch}>
-          Search
-        </button>
+        <button className="btn btn-primary" type="submit">Search</button>
       </form>
       <ul className="list-group mt-3">
         {results.map((track) => (

@@ -1,11 +1,12 @@
 import React from 'react';
+import '../Header.css'
 
 const Header = () => {
   return (
-    <header className="container-fluid bg-primary text-white p-3 mb-4 navbar navbar-dark ">
-      <div className="">
+    <header className="header-container navbar navbar-dark">
+      <div className="marquee-container">
         <div className="marquee">
-          <p className="scrolling-text fs-1 fw-bold">Bienvenue sur Galsen-Music</p>
+          <p className="scrolling-text">Bienvenue sur Galsen-Music</p>
         </div>
       </div>
     </header>
