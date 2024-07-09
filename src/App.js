@@ -31,9 +31,9 @@ const App = () => {
   return (
     <div className="">
       <Header />
-      {/* <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       <TrackList tracks={tracks} />
-      <Player /> */}
+      <Player />
     </div>
   );
 };
