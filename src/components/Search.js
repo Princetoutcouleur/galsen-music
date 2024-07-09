@@ -1,38 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import '../Search.css'
+import "../Search.css";
 
 const spotifyApi = new SpotifyWebApi();
 
-function Search() {
+function Search({ onSearchResults }) {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleSearch = () => {
-    spotifyApi.searchTracks(query).then((response) => {
-      setResults(response.tracks.items);
-    });
-  };
+  useEffect(() => {
+    if (query.trim() === "") {
+      // Ne rien faire si la requête est vide
+      onSearchResults([]);
+      return;
+    }
+
+    setLoading(true);
+    spotifyApi.searchTracks(query).then(
+      (response) => {
+        setLoading(false);
+        onSearchResults(response.tracks.items);
+      },
+      (error) => {
+        setLoading(false);
+        console.error("Erreur lors de la recherche de pistes : ", error);
+      }
+    );
+  }, [query, onSearchResults]);
 
   return (
     <div className="search-container">
-      <form className="search-form" onSubmit={handleSearch}>
+      <form className="search-form">
         <input
           type="text"
           value={query}
           className="form-control me-2"
-          placeholder="Search for a track..."
+          placeholder="Trouver un morceau..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className="btn btn-primary" type="submit">Search</button>
       </form>
-      <ul className="list-group mt-3">
-        {results.map((track) => (
-          <li key={track.id} className="list-group-item">
-            {track.name}
-          </li>
-        ))}
-      </ul>
+      {/* {loading && <p>Loading...</p>} */}
     </div>
   );
 }

@@ -73,3 +73,56 @@
     max-width: 100%;
   }
 }
+
+.playlist-card {
+  position: relative;
+}
+
+.card-img-container {
+  position: relative;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.btn-play {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 128, 0, 0.8); /* Vert avec transparence */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card:hover .btn-play {
+  display: flex;
+}
+
+.search-result-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .playlist-card {
+    margin-bottom: 20px;
+  }
+}
